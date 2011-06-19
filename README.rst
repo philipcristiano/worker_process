@@ -23,6 +23,4 @@ The worker can be stopped gracefully by sending a SIGTERM to the process.
 ...         print 'Tick!'
 ...         time.sleep(1)
 ...
-...
-... if __name__ == '__main__':
-...     ExampleWorker.main()
+... ExampleWorker.main()

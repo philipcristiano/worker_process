@@ -24,3 +24,7 @@ virtualenv:
 .PHONY: install
 install:
 	$(PYTHON) setup.py install
+
+.PHONY: upload
+upload:
+	$(PYTHON) setup.py sdist upload
