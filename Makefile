@@ -13,6 +13,10 @@ develop:
 dist:
 	bin/python setup.py sdist
 
+requirements:
+	bin/pip install -r requirements.pip
+	bin/easy_install nose-machineout
+
 virtualenv:
 	virtualenv --no-site-packages --distribute .
 
