@@ -41,7 +41,7 @@ class WorkerRunner(object):
         """Start the worker"""
         self.instance.startup()
         while self._should_continue_running:
-            self.tick()
+            self.instance.tick()
         self.instance.shutdown()
 
     def _stop(self):

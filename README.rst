@@ -3,24 +3,26 @@ Worker Process
 
 This package provides a wrapper to create standalone worker processes.
 
-Types of Workers
-================
-
-To create a worker you inherit from a BaseWorker class and implement a single
-function to complete the work and optionally startup and shutdown functions.
-
-Example Polling Worker
+Example Worker
 ======================
 
-Polling workers will execute the work function between 5 second waits. If the
-function returns True it will execute again immediately.
+Workers are created by extending the BaseWorker class and implementing a tick
+method to execute then calling .main() on the class. This will start an
+infite loop calling that function.
 
-    from worker_process import BasePollWorker
+The worker can be stopped gracefully by sending a SIGTERM to the process.
 
-    class ExampleWorker(BasePollWorker):
-
-        def run_once(self):
-            print 'Tick!'
-
-            return False
-
+>>> import time
+...
+... from worker_process import BaseWorker
+...
+...
+... class ExampleWorker(BaseWorker):
+...
+...     def tick(self):
+...         print 'Tick!'
+...         time.sleep(1)
+...
+...
+... if __name__ == '__main__':
+...     ExampleWorker.main()
