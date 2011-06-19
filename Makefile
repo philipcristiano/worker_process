@@ -1,27 +1,26 @@
-NOSETESTS = nosetests -m '([Dd]escribe|[Ww]hen|[Ss]hould|[Tt]est)' -e DingusTestCase
+PYTHON=bin/python
+NOSETESTS=bin/nosetests
 
-unit-test:
-	$(NOSETESTS) tests/unit/*.py
+test:
+	$(NOSETESTS) tests
 
-acceptance-test:
-	$(NOSETESTS) tests/acceptance/*.py
-
+.PHONY: develop
 develop:
-	bin/python setup.py develop
+	$(PYTHON) setup.py develop
 
 .PHONY: dist
 dist:
-	bin/python setup.py sdist
+	$(PYTHON) setup.py sdist
 
+.PHONY: requirements
 requirements:
 	bin/pip install -r requirements.pip
 	bin/easy_install nose-machineout
 
+.PHONY: virtualenv
 virtualenv:
 	virtualenv --no-site-packages --distribute .
 
-create:
-	bin/plug create --package=dist/plug-0.1.0.tar.gz
-
+.PHONY: install
 install:
-	sudo bin/plug install --plug=plug-0.1.0.tar.gz.plug
+	$(PYTHON) setup.py install

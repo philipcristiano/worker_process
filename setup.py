@@ -22,7 +22,7 @@ setup(
     packages=['worker_process'],
     install_requires=[''],
     test_suite='tests',
-    long_description=read('README'),
+    long_description=read('README.rst'),
     zip_safe=True,
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',

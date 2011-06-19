@@ -1,1 +1,1 @@
-from worker_process.worker import BaseEventWorker, BasePollingWorker
+from worker_process.worker import BaseWorker
