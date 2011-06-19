@@ -13,3 +13,5 @@
 *.plug
 distribute-*
 nosetests.xml
+README.txt
+man/man1/nosetests.1
