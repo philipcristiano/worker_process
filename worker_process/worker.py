@@ -4,7 +4,6 @@ Worker
 Classes that a worker process should use.
 """
 
-import collections
 import signal
 import socket
 import time
@@ -32,16 +31,16 @@ class BaseEventWorker(BaseWorker):
         runner.run()
 
 
-class BasePollWorker(BaseWorker):
-    """Base class for polling-based workers to inherit from.
-    """
+class BasePollingWorker(BaseWorker):
+    """Base class for polling-based workers to inherit from."""
 
     @classmethod
     def main(cls):
         """Entry point to use for a worker. This in general should not be
         overridden.
+
         """
-        runner = PollWorkerRunner(cls)
+        runner = PollingWorkerRunner(cls)
         runner.run()
 
 
@@ -49,34 +48,31 @@ class WorkerRunner(object):
 
     def __init__(self, cls):
         self.instance = cls()
-        #self._connection = ConnectionSingleton.get_instance()
-
-        # Inject into the instance
-        #self.instance.connection = self._connection
         self._should_continue_running = True
-
-        signal.signal(signal.SIGTERM, self.handle_sigterm)
+        signal.signal(signal.SIGTERM, self._handle_sigterm)
 
     def run(self):  # pragma: no cover
         """Start the worker"""
         #log.info('Starting worker loop...')
 
+        self.instance.startup()
         while self._should_continue_running:
             self.tick()
+        self.instance.shutdown()
 
         #log.info('Stopping worker loop.')
 
         #self._connection.close()
 
-    def stop(self):
+    def _stop(self):
         """Trigger the event loop to stop"""
         #log.info('Stopping worker loop...')
         self._should_continue_running = False
 
-    def handle_sigterm(self, signum, frame):
+    def _handle_sigterm(self, signum, frame):
         """Stops the worker when terminated"""
         #log.info('Received SIGTERM')
-        self.stop()
+        self._stop()
 
     def tick(self):
         """Run for one unit of work.
@@ -121,7 +117,7 @@ class EventWorkerRunner(WorkerRunner):
         return True
 
 
-class PollWorkerRunner(WorkerRunner):
+class PollingWorkerRunner(WorkerRunner):
     """A runner for running a job periodically.
     """
 
