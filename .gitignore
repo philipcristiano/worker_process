@@ -1,0 +1,15 @@
+*.pyc
+.#*
+.*.swp
+.Python
+.vagrant
+/*.egg-info
+/bin
+/build
+/dist
+/include
+/lib
+/tmp
+*.plug
+distribute-*
+nosetests.xml
