@@ -24,6 +24,8 @@ class WhenCreatingWorkerRunner(BaseWorkerRunner):
     def should_register_sigterm_handler(self):
         assert mod.signal.calls('signal', mod.signal.SIGTERM, self.runner._handle_sigterm)
 
+    def should_register_sighup_handler(self):
+        assert mod.signal.calls('signal', mod.signal.SIGHUP, self.runner._handle_sighup)
 
 class WhenReceivingSigTerm(BaseWorkerRunner):
 
@@ -36,6 +38,19 @@ class WhenReceivingSigTerm(BaseWorkerRunner):
 
     def should_no_longer_continue_running(self):
         assert self.runner._should_continue_running == False
+
+
+class WhenReceivingSigTerm(BaseWorkerRunner):
+
+    def setup(self):
+        BaseWorkerRunner.setup(self)
+        self.signum = Dingus('signum')
+        self.frame = Dingus('frame')
+
+        self.runner._handle_sighup(self.signum, self.frame)
+
+    def should_no_longer_continue_running(self):
+        assert self.runner.instance.calls('sighup')
 
 
 class WhenRunning(BaseWorkerRunner):

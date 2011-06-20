@@ -24,9 +24,15 @@ class BaseWorker(object):
         raise NotImplementedError('Subclasses must define tick.')
 
     def startup(self):
+        """Called before the loop starts."""
         pass
 
     def shutdown(self):
+        """Called after the loop stops."""
+        pass
+
+    def sighup(self):
+        """Called when a SIGHUP is sent to the worker process."""
         pass
 
 
@@ -36,6 +42,7 @@ class WorkerRunner(object):
         self.instance = cls()
         self._should_continue_running = True
         signal.signal(signal.SIGTERM, self._handle_sigterm)
+        signal.signal(signal.SIGHUP, self._handle_sighup)
 
     def run(self):
         """Start the worker"""
@@ -51,3 +58,7 @@ class WorkerRunner(object):
     def _handle_sigterm(self, signum, frame):
         """Stops the worker when terminated"""
         self._stop()
+
+    def _handle_sighup(self, signum, frame):
+        """Calls the worker sighup"""
+        self.instance.sighup()
