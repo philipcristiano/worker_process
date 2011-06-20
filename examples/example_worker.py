@@ -1,6 +1,6 @@
 import time
 
-from worker_process import BaseWorker
+from workerprocess import BaseWorker
 
 
 class ExampleWorker(BaseWorker):

@@ -11,7 +11,7 @@ def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup(
-    name='worker_process',
+    name='workerprocess',
     version='0.1.0',
     description='A tool for creating external worker processes',
     keywords = '',
@@ -19,7 +19,7 @@ setup(
     author='Philip Cristiano',
     author_email='worker_process@philipcristiano.com',
     license='BSD',
-    packages=['worker_process'],
+    packages=['workerprocess'],
     install_requires=[''],
     test_suite='tests',
     long_description=read('README.rst'),

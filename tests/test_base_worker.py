@@ -1,7 +1,7 @@
 from dingus import Dingus, DingusTestCase
 
-from worker_process.worker import BaseWorker
-import worker_process.worker as mod
+from workerprocess.worker import BaseWorker
+import workerprocess.worker as mod
 
 class WhenStartingBaseWorker(DingusTestCase(BaseWorker)):
 
