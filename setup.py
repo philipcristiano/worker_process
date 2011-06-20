@@ -12,7 +12,7 @@ def read(fname):
 
 setup(
     name='workerprocess',
-    version='0.1.0',
+    version='0.1.1',
     description='A tool for creating external worker processes',
     keywords = '',
     url='https://github.com/philipcristiano/worker_process',
