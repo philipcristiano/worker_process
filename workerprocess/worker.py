@@ -37,6 +37,7 @@ class BaseWorker(object):
 
 
 class WorkerRunner(object):
+    """Run an instance of BaseWorker"""
 
     def __init__(self, cls):
         self.instance = cls()
@@ -47,9 +48,12 @@ class WorkerRunner(object):
     def run(self):
         """Start the worker"""
         self.instance.startup()
-        while self._should_continue_running:
+        while self.should_continue_running():
             self.instance.tick()
         self.instance.shutdown()
+
+    def should_continue_running(self):
+        return self._should_continue_running
 
     def _stop(self):
         """Trigger the event loop to stop"""
@@ -62,3 +66,4 @@ class WorkerRunner(object):
     def _handle_sighup(self, signum, frame):
         """Calls the worker sighup"""
         self.instance.sighup()
+
