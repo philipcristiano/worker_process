@@ -8,7 +8,7 @@ def read(fname):
 def run_setup():
     setup(
         name='workerprocess',
-        version='0.1.1',
+        version='0.1.2',
         description='A tool for creating external worker processes',
         keywords = '',
         url='https://github.com/philipcristiano/worker_process',
