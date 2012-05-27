@@ -20,7 +20,8 @@ def test_worker_runner_run(mock_signal):
     worker = MagicMock(BaseWorker)
     worker_runner = WorkerRunner(worker)
     with patch.object(worker_runner, 'should_continue_running', side_effect=[True, False]) as scr:
-        worker_runner.run()
+        with patch.object(worker_runner, '_wait_for_next_time_to_run') as wfnttu:
+            worker_runner.run()
 
     calls = [call(), call().startup(), call().tick(), call().shutdown()]
     worker.mock_calls

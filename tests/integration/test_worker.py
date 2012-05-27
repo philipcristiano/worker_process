@@ -1,6 +1,6 @@
 import signal
 
-#from nose.tools import eq_
+from nose.tools import eq_
 
 from workerprocess.worker import BaseWorker, WorkerRunner
 
@@ -19,6 +19,8 @@ def create_callable_to_stop_worker_runner(worker_runner):
 class Worker(BaseWorker):
     "Test worker"
 
+    max_ticks_per_second = 5
+
     def __init__(self):
         self.counter = 0
 
@@ -33,5 +35,4 @@ def test_worker():
     signal.alarm(1)
     worker_runner.run()
 
-    print worker_runner.instance.counter
-
+    eq_(worker_runner.instance.counter, 5)
