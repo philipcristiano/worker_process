@@ -31,7 +31,7 @@ def run_setup():
         entry_points="""
             [console_scripts]
         """
-
+    )
 
 if __name__ == '__main__':
     run_setup()
