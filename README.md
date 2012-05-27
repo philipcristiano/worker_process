@@ -28,3 +28,6 @@ The worker can be stopped gracefully by sending a SIGTERM to the process.
     ...         time.sleep(1)
     ...
     ... ExampleWorker.main()
+
+A `sighup` method on the function will be called if the process receives a
+SIGHUP
