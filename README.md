@@ -31,3 +31,16 @@ The worker can be stopped gracefully by sending a SIGTERM to the process.
 
 A `sighup` method on the function will be called if the process receives a
 SIGHUP
+
+Running the Worker
+==================
+The easiest way to be able to run the worker is by adding a console\_script
+entry point in your setup.py:
+
+    entry_points="""
+    [console_scripts]
+    example_worker_process = yourpackage.yourmodule:ExampleWorker.main
+    """,
+
+After installing your package you will be able to run the command
+`example_worker_process` from the command line.
