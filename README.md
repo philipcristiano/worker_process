@@ -3,6 +3,8 @@ Worker Process
 
 This package provides a wrapper to create standalone worker processes.
 
+[![Build Status](https://secure.travis-ci.org/philipcristiano/worker_process.png?branch=master)](http://travis-ci.org/philipcristiano/worker_process)
+
 Example Worker
 ======================
 
