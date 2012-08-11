@@ -10,6 +10,13 @@ WorkerProcess is a library that makes your day simpler by providing an easy base
 
 .. literalinclude:: ../../examples/example_worker.py
 
+The `tick` method will be called in an infinite loop. WorkerProcess will handle `SIGTERM` and `SIGHUP`. You can override the default `SIGHUP` behavior (of nothing) by adding the method `sighup`. `startup` and `shutdown` methods are available as well that will run before and after the loop.
+
+A full example:
+
+.. literalinclude:: ../../examples/full_worker.py
+
+
 Contents:
 
 .. toctree::
