@@ -10,7 +10,15 @@ WorkerProcess is a library that makes your day simpler by providing an easy base
 
 .. literalinclude:: ../../examples/example_worker.py
 
-The `tick` method will be called in an infinite loop. WorkerProcess will handle `SIGTERM` and `SIGHUP`. You can override the default `SIGHUP` behavior (of nothing) by adding the method `sighup`. `startup` and `shutdown` methods are available as well that will run before and after the loop.
+The `tick` method will be called in an infinite loop. WorkerProcess will handle
+`SIGTERM` and `SIGHUP`. You can override the default `SIGHUP` behavior (of
+nothing) by adding the method `sighup`. `startup` and `shutdown` methods are
+available as well that will run before and after the loop.
+
+WorkerProcess can also limit the number of loops per second with the
+`max_ticks_per_second` variable. This supports floating point numbers as well
+so `.1` will run once every 10 seconds. This is mainly used for keeping the
+worker from going into a busy loop.
 
 A full example:
 
