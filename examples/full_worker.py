@@ -1,16 +1,15 @@
-import time
-
 from workerprocess import BaseWorker
 
 
 class ExampleWorker(BaseWorker):
+
+    max_ticks_per_second = 1
 
     def startup(self):
         print 'Starting...'
 
     def tick(self):
         print 'Tick!'
-        time.sleep(1)
 
     def shutdown(self):
         print 'Shutting down.'
