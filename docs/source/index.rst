@@ -25,8 +25,6 @@ A full example:
 .. literalinclude:: ../../examples/full_worker.py
 
 
-Contents:
-
 .. toctree::
    :maxdepth: 2
 
