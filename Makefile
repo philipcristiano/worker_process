@@ -11,6 +11,7 @@ NOSYD = $(VIRTUALENV_BIN)/nosyd -1
 PIP = $(VIRTUALENV_BIN)/pip
 PYTHON = $(ENV) $(VIRTUALENV_BIN)/python
 
+
 .PHONY: test
 test: unit-test integration-test acceptance-test
 
@@ -32,7 +33,7 @@ tdd:
 
 .PHONY: docs
 docs:
-	bin/sphinx-build -b html -d docs/build/doctrees docs/source docs/html
+	cd docs; make html
 
 .PHONY: foreman
 foreman:
