@@ -6,7 +6,7 @@
 Welcome to workerprocess's documentation!
 =========================================
 
-`workerprocess` is a library that makes your day simpler by providing an easy base class for background workers.
+WorkerProcess is a library that makes your day simpler by providing an easy base class for background workers.
 
 .. literalinclude:: ../../examples/example_worker.py
 
