@@ -13,7 +13,7 @@ class BaseWorker(object):
     """
 
     max_ticks_per_second = 0
-    """If greater than zero this worker will run at most this mane ticks"""
+    """If greater than zero this worker will run at most this many ticks"""
 
     @classmethod
     def main(cls):
